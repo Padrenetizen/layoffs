@@ -65,3 +65,102 @@ WHERE row_num > 1;
 DELETE
 FROM layoff_staging3
 WHERE row_num > 1;
+
+SELECT *
+FROM layoff_staging;
+
+SELECT company, TRIM(company)
+FROM layoff_staging;
+
+UPDATE layoff_staging
+SET company = TRIM(company);
+
+SELECT DISTINCT industry
+FROM layoff_staging3
+ORDER BY 1;
+
+SELECT DISTINCT location
+FROM layoff_staging3;
+
+SELECT `date`,
+STR_TO_DATE(`date`, '%m/%d/%Y')
+FROM layoff_staging3;
+
+UPDATE layoff_staging3
+SET `date` = STR_TO_DATE(`date`, '%m/%d/%Y');
+
+SELECT date
+FROM layoff_staging3;
+
+ALTER TABLE layoff_staging3
+MODIFY column `date` DATE;
+
+SELECT *
+FROM layoff_staging3;
+
+-- null/blanks
+SELECT country
+FROM layoff_staging3
+WHERE country = '';
+
+UPDATE layoff_staging3
+SET country = NULL
+WHERE country = '';
+
+SELECT funds_raised
+FROM layoff_staging3
+WHERE funds_raised = '';
+
+UPDATE layoff_staging3
+SET funds_raised = NULL
+WHERE funds_raised = '';
+
+SELECT stage
+FROM layoff_staging3
+WHERE stage = '';
+
+UPDATE layoff_staging3
+SET stage = NULL
+WHERE stage = '';
+
+SELECT percentage_laid_off
+FROM layoff_staging3
+WHERE percentage_laid_off = '';
+
+SELECT industry
+FROM layoff_staging3
+WHERE industry = '';
+
+UPDATE layoff_staging3
+SET industry = NULL
+WHERE industry = '';
+
+UPDATE layoff_staging3
+SET percentage_laid_off = NULL
+WHERE percentage_laid_off = '';
+
+DELETE
+FROM layoff_staging3
+WHERE country IS NULL;
+
+DELETE
+FROM layoff_staging3
+WHERE stage IS NULL;
+
+DELETE
+FROM layoff_staging3
+WHERE industry IS NULL;
+
+SELECT *
+FROM layoff_staging3;
+
+DELETE
+FROM layoff_staging3
+WHERE percentage_laid_off IS NULL;
+
+DELETE
+FROM layoff_staging3
+WHERE funds_raised IS NULL;
+
+SELECT *
+FROM layoff_staging3;
